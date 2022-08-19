@@ -16,16 +16,11 @@ function App(props: any) {
               <div className='app-wrapper-content'>
                   <Route path='/dialogs'
                          render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                                       {/*Пункт 2: state.tsx, а также пункт: №3 */}
                   <Route path='/profile'
                          render={() => <Profile state={props.state.profilePage}/>}/>
+                                       {/*Пункт 2: state.tsx, а также пункт: №3 */}
               </div>
-
-                  {/*
-                   Router определяет набор маршрутов и, когда к приложению, приходит запрос, то Router выполняет сопоставление запроса с маршрутами.
-
-                  path: шаблон адреса, с которым будет сопоставляться запрошенный адрес URL
-
-                  */}
           </div>
       </BrowserRouter>)
 }
