@@ -8,12 +8,11 @@ const MyPosts = (props: any) => {
         <Post message={p.message} likesCount={p.likesCount}/>
     );
 
-    let newPostElement = React.createRef();
+    let newPostElement= React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
-        let text = newPostElement.current.value;
+        let text = newPostElement.current?.value;
         props.addPost(text);
-        newPostElement.current.value = '';
     }
 
     return (

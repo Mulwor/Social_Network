@@ -5,6 +5,13 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
+import state from "./redux/state";
+import {addPost} from "./redux/state";
+
+type MessageType = {
+    message: string,
+    addPostCallback: (message: string) => void
+}
 
 function App(props: any) {
     return (
@@ -14,7 +21,9 @@ function App(props: any) {
 
               <div className='app-wrapper-content'>
                   <Route path='/dialogs'
-                         render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                         render={() => <Dialogs state={props.state.dialogsPage}
+                             addPostCallback={addPostCallback}/>
+                  }/>
 
                   <Route path='/profile'
                          render={() =>

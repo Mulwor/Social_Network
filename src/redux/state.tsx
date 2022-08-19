@@ -1,6 +1,33 @@
 import {rerenderEntireTree} from "../render";
 
-let state = {
+type MessageType = {
+    id: number,
+    message: string
+}
+type DialogType = {
+    id: number,
+    name: string
+}
+type PostType = {
+    id: number,
+    message: string,
+    likesCount: number
+}
+type ProfilePageType = {
+    posts: Array<PostType>
+}
+type DialogPageType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+}
+type SidebarType = {}
+type RootStateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogPageType
+    sidebar: SidebarType
+}
+
+let state: RootStateType = {
     profilePage: {
         posts: [
             {id: 1, message: 'Hi, how are you?', likesCount: 12},
@@ -31,9 +58,9 @@ let state = {
     }
 }
 
-export let addPost = (postMessage: any) => {
-    let newPost = {
-        id: 5,
+export const addPost = (postMessage: string) => {
+    let newPost: PostType = {
+        id: new Date().getTime(),
         message: postMessage,
         likesCount: 0
     };
