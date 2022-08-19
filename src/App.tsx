@@ -8,7 +8,6 @@ import {BrowserRouter, Route} from "react-router-dom";
 
 function App(props: any) {
     return (
-      <BrowserRouter>
           <div className='app-wrapper'>
               <Header />
               <Navbar />
@@ -16,13 +15,15 @@ function App(props: any) {
               <div className='app-wrapper-content'>
                   <Route path='/dialogs'
                          render={() => <Dialogs state={props.state.dialogsPage}/>}/>
-                                       {/*Пункт 2: state.tsx, а также пункт: №3 */}
+
                   <Route path='/profile'
-                         render={() => <Profile state={props.state.profilePage}/>}/>
-                                       {/*Пункт 2: state.tsx, а также пункт: №3 */}
+                         render={() =>
+                             <Profile
+                                 state={props.state.profilePage}
+                                 addPost = {props.addPost}/>
+                         }/>
               </div>
-          </div>
-      </BrowserRouter>)
+          </div>)
 }
 
 export default App;

@@ -1,10 +1,5 @@
-// 1. Создаем файл и импортируем в index.tsx
-/* 2. После импорта исправляем index.tsx на стейт
-ReactDOM.render(<App state={state} />, document.getElementById('root'));
-И переходим в app.tsx и прокидываем туда state */
-/* 3. Вызываем пропсы в функции app.tsx, затем вызываем state, который лежит тут, а затема вызываем диалог.пейдже и профиль пейдж, который лежит здесь */
-/* 4. После сделанного переходим в Dialogs и прописываем: props.state.dialogs.map и props.state.messages.map */
-// 5. Переходим в профайл тск и пишем <MyPosts postsData={props.state.posts}/>
+import {rerenderEntireTree} from "../render";
+
 let state = {
     profilePage: {
         posts: [
@@ -31,7 +26,19 @@ let state = {
             {id: 5, message: 'Yo'}
         ]
     },
-    sidebar: {}
+    sidebar: {
+        //...
+    }
+}
+
+export let addPost = (postMessage: any) => {
+    let newPost = {
+        id: 5,
+        message: postMessage,
+        likesCount: 0
+    };
+    state.profilePage.posts.push(newPost);
+    rerenderEntireTree(state);
 }
 
 export default state;
