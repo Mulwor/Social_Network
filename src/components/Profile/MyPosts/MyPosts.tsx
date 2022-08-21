@@ -3,9 +3,27 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post'
 
 
-const MyPosts = (props: any) => {
-    let postsElements = props.postsData.map ((p: any) =>
-        <Post message={p.message} likesCount={p.likesCount} />
+type DialogType = {
+    id: number,
+    message: string,
+    likesCount: number,
+}
+
+type addPostType = {
+    addPost: () => void
+}
+
+export type PostPropsType = {
+    postsData: DialogType[],
+    newPostText: string,
+    addPost: () => void
+    updateNewPostText: (value: string) => void
+}
+
+
+const MyPosts = (props: PostPropsType) => {
+    let postsElements = props.postsData.map (p =>
+        <Post message={p.message} likesCount={p.likesCount} key={p.id} />
     );
 
     let newPostElement= React.createRef<HTMLTextAreaElement>();
@@ -17,8 +35,8 @@ const MyPosts = (props: any) => {
 
     const onPostChange = () => {
         let text = newPostElement.current?.value;
-        props.updateNewPostText(text)
-    }  // 2
+        props.updateNewPostText(text || '')
+    }
 
     return (
         <div className={s.postsBlock}>
@@ -27,8 +45,8 @@ const MyPosts = (props: any) => {
                 <div>
                     <textarea
                         onChange={onPostChange}
-                        ref={newPostElement}   // 1
-                        value={props.newPostText} // 3
+                        ref={newPostElement}
+                        value={props.newPostText}
                     />
                 </div>
                 <div>

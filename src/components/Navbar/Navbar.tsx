@@ -6,9 +6,6 @@ const Navbar = () => {
     return <nav className={s.nav}>
                 <div className={s.item}>
                     <NavLink to="/profile" activeClassName={s.activeLink}>Profile</NavLink>
-                    {/*NavLink - ссылка без перезагрузки страницы
-                     active className - добавляет активный класс
-                     */}
                 </div>
 
                 <div className={` ${s.item} ${s.active} `}>

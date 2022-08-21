@@ -2,9 +2,17 @@ import React from 'react';
 //import s from './Profile.module.css;
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import {ProfilePageType} from "../../redux/state";
 
-const Profile = (props: any) => {
-    debugger
+
+export type ProfilePagePropsType = {
+    profilePage: ProfilePageType,
+    newPostText: string,
+    addPost: () => void
+    updateNewPostText: (newPostText: string) => void
+}
+
+const Profile = (props: ProfilePagePropsType) => {
     return (
         <div>
             <ProfileInfo />

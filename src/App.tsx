@@ -5,13 +5,15 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
+import {addPost, RootStateType} from "./redux/state";
 
-type MessageType = {
-    message: string,
-    addPostCallback: (message: string) => void
+type PropsType = {
+    state: RootStateType
+    addPost: () => void
+    updateNewPostText: (value: string) => void
 }
 
-function App(props: any) {
+function App(props: PropsType) {
     return (
           <div className='app-wrapper'>
               <Header />
@@ -19,14 +21,18 @@ function App(props: any) {
 
               <div className='app-wrapper-content'>
                   <Route path='/dialogs'
-                         render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                         render={() => <Dialogs
+                             state={props.state.dialogsPage}
+                             addPost = {addPost}
+                         />}/>
 
                   <Route path='/profile'
                          render={() =>
                              <Profile
                                  profilePage={props.state.profilePage}
+                                 newPostText={props.state.profilePage.newPostText}
                                  addPost = {props.addPost}
-                                 updateNewPostText={props.updateNewPostText} // 8
+                                 updateNewPostText={props.updateNewPostText}
                              />
                          }/>
               </div>
