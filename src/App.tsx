@@ -9,6 +9,7 @@ import {PropsTypeForAPP} from "./redux/state";
 
 
 const App: React.FC<PropsTypeForAPP> = (props: PropsTypeForAPP) => {
+    debugger
     return (
           <div className='app-wrapper'>
               <Header />
@@ -16,9 +17,9 @@ const App: React.FC<PropsTypeForAPP> = (props: PropsTypeForAPP) => {
 
               <div className='app-wrapper-content'>
                   <Route path='/dialogs'
-                         render={() => <Dialogs
-                             state={props.state.dialogsPage}
-                         />}/>
+                         render={() =>
+                             <Dialogs state={props.state.dialogsPage}/>
+                         }/>
 
                   <Route path='/profile'
                          render={() =>

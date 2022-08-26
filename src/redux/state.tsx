@@ -42,7 +42,7 @@ export type RootStateType = {
     sidebar: SidebarType
 }
 
-// OOP
+// OOP with dispatch
 export type StoreType = {
     _state: RootStateType,
     _onChange: () => void
@@ -65,8 +65,6 @@ export type PropsTypeForAPP = {
     state: RootStateType
     dispatch: (action: ActionsTypes) => void
 }
-
-
 
 export let store: StoreType = {
     _state: {
@@ -125,6 +123,15 @@ export let store: StoreType = {
         }
     }
 }
+
+
+export const addPostActionCreator = (textAdd: any) => {
+    return { type: 'ADD-POST', postText: textAdd ? textAdd : ""}
+}
+export const onPostActionChange = (text: any) => {
+    return { type: "UPDATE-NEW-POST-TEXT", newText: text ? text : ""}
+}
+
 
 // @ts-ignore
 window.state = store.getState()
