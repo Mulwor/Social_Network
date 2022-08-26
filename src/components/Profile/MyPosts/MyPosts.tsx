@@ -1,25 +1,14 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post'
-
-
-type DialogType = {
-    id: number,
-    message: string,
-    likesCount: number,
-}
-
-type addPostType = {
-    addPost: () => void
-}
+import {PostType} from "../../../redux/state";
 
 export type PostPropsType = {
-    postsData: DialogType[],
+    postsData: PostType[],
     newPostText: string,
     addPost: () => void
     updateNewPostText: (value: string) => void
 }
-
 
 const MyPosts = (props: PostPropsType) => {
     let postsElements = props.postsData.map (p =>

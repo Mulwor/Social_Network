@@ -4,17 +4,6 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {DialogPageType} from "../../redux/state";
 
-
-type DialogType = {
-    id: number,
-    name: string
-}
-
-type MessageType = {
-    id: number,
-    message: string
-}
-
 type DialogsPropsType = {
     state: DialogPageType
     addPost: () => void

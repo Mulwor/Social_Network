@@ -7,7 +7,7 @@ export type DialogType = {
     name: string
 }
 export type PostType = {
-    id: number,
+    id?: number,
     message: string,
     likesCount: number
 }
