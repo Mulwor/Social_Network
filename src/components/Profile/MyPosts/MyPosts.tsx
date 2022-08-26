@@ -29,13 +29,14 @@ const MyPosts = (props: PostPropsType) => {
     let newPostElement= React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
-        props.addPost();
-        props.updateNewPostText("")
+        // props.addPost();
+        props.dispatch({type: 'ADD-POST'})
     }
 
     const onPostChange = () => {
         let text = newPostElement.current?.value;
-        props.updateNewPostText(text || '')
+        let action = {type: "UPDATE-NEW-POST-TEXT", newText: text};
+        props.dispatch(action)
     }
 
     return (
