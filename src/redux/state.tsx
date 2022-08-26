@@ -27,7 +27,7 @@ export type ProfilePageType = {
 }
 export type PostPropsType = {
     postsData: PostType[],
-    newPostText: string,
+    newPostText: string | undefined,
     dispatch: (action: ActionsTypes) => void
 }
 export type ProfilePagePropsType = {
@@ -50,21 +50,17 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: ActionsTypes) => void
 }
-export type AddPostActionType = {
-    type: 'ADD-POST',
-    postText: string
-}
-export type ChangeNewTextActionType = {
-    type: "UPDATE-NEW-POST-TEXT",
-    newText: string
-}
-export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
+export type ActionsTypes = ReturnType <typeof addPostActionCreator> | ReturnType <typeof onPostActionChange>
+
 
 //APP
 export type PropsTypeForAPP = {
     state: RootStateType
     dispatch: (action: ActionsTypes) => void
 }
+
+let ADD_POST: string = 'ADD-POST';
+let UPDATE_NEW_POST_TEXT: string = "UPDATE-NEW-POST-TEXT";
 
 export let store: StoreType = {
     _state: {
@@ -107,17 +103,17 @@ export let store: StoreType = {
     getState() {
         return this._state
     },
-    dispatch(action) {
-        if (action.type === 'ADD-POST') {
+    dispatch(action: ActionsTypes) {
+        if (action.type === ADD_POST) {
             const newPost: PostType = {
                 id: new Date().getTime(),
-                message: action.postText,
+                message: action.postText ,
                 likesCount: 0
             };
             this._state.profilePage.posts.push(newPost);
             this._onChange()
 
-        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._onChange()
         }
@@ -125,12 +121,15 @@ export let store: StoreType = {
 }
 
 
-export const addPostActionCreator = (textAdd: any) => {
-    return { type: 'ADD-POST', postText: textAdd ? textAdd : ""}
-}
-export const onPostActionChange = (text: any) => {
-    return { type: "UPDATE-NEW-POST-TEXT", newText: text ? text : ""}
-}
+export const addPostActionCreator = (textAdd: string | undefined) => ({
+    type: 'ADD-POST', postText: textAdd  } as const
+)
+
+export const onPostActionChange = (text: string | undefined) => ({
+    type: "UPDATE-NEW-POST-TEXT",
+        newText: text ? text : ""
+} as const
+)
 
 
 // @ts-ignore
