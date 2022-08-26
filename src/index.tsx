@@ -8,16 +8,7 @@ import {BrowserRouter} from "react-router-dom";
 let renderTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={store.getState()} dispatch={store.dispatch.bind(store)}
-                /* Привязываем контекст(bind), он позволяет зафиксировать this. Берет функцию addpost и соединяет со стором
-                 let user = {  firstName: "Вася" };
-                 function func() { alert(this.firstName); }
-                 let funcUser = func.bind(user);
-                 funcUser(); // Вася
-                 Здесь func.bind(user) – это «связанный вариант» func, с фиксированным this=user.
-
-                 */
-            />
+            <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>
         </BrowserRouter>, document.getElementById('root'));
 }
 

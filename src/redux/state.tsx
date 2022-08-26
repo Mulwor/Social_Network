@@ -1,11 +1,21 @@
-export type MessageType = {
-    id: number,
-    message: string
-}
+// Dialogs
 export type DialogType = {
     id: number,
     name: string
 }
+export type MessageType = {
+    id: number,
+    message: string
+}
+export type DialogPageType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+}
+export type DialogsPropsType = {
+    state: DialogPageType
+}
+
+// Profile
 export type PostType = {
     id?: number,
     message: string,
@@ -15,9 +25,15 @@ export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
 }
-export type DialogPageType = {
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
+export type PostPropsType = {
+    postsData: PostType[],
+    newPostText: string,
+    dispatch: (action: ActionsTypes) => void
+}
+export type ProfilePagePropsType = {
+    profilePage: ProfilePageType,
+    newPostText: string,
+    dispatch: (action: ActionsTypes) => void
 }
 export type SidebarType = {}
 export type RootStateType = {
@@ -26,6 +42,7 @@ export type RootStateType = {
     sidebar: SidebarType
 }
 
+// OOP
 export type StoreType = {
     _state: RootStateType,
     _onChange: () => void
@@ -33,16 +50,23 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: ActionsTypes) => void
 }
-
-type AddPostActionType = {
+export type AddPostActionType = {
     type: 'ADD-POST',
     postText: string
 }
-type ChangeNewTextActionType = {
+export type ChangeNewTextActionType = {
     type: "UPDATE-NEW-POST-TEXT",
     newText: string
 }
 export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
+
+//APP
+export type PropsTypeForAPP = {
+    state: RootStateType
+    dispatch: (action: ActionsTypes) => void
+}
+
+
 
 export let store: StoreType = {
     _state: {

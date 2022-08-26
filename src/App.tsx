@@ -4,17 +4,11 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
-import {BrowserRouter, Route} from "react-router-dom";
-import store, {ActionsTypes, RootStateType, StoreType} from "./redux/state";
+import {Route} from "react-router-dom";
+import {PropsTypeForAPP} from "./redux/state";
 
-type PropsType = {
-    state: RootStateType
-    dispatch: (action: ActionsTypes) => void
-}
 
-const App: React.FC<PropsType> = (props: PropsType) => {
-   // const state = props.state.getState()
-
+const App: React.FC<PropsTypeForAPP> = (props: PropsTypeForAPP) => {
     return (
           <div className='app-wrapper'>
               <Header />

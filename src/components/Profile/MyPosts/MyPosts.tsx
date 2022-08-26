@@ -1,16 +1,9 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post'
-import {ActionsTypes, PostType} from "../../../redux/state";
+import {PostPropsType} from "../../../redux/state";
 
-export type PostPropsType = {
-    postsData: PostType[],
-    newPostText: string,
-    dispatch: (action: ActionsTypes) => void
-}
-let addPostActionCreator = () => {
-    return
-}
+
 const MyPosts = (props: PostPropsType) => {
     let postsElements = props.postsData.map (p =>
         <Post message={p.message} likesCount={p.likesCount} key={p.id} />
