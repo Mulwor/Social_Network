@@ -14,6 +14,7 @@ export type DialogPageType = {
 }
 export type DialogsPropsType = {
     state: DialogPageType
+    store: StoreType
 }
 
 // Profile
@@ -28,7 +29,7 @@ export type ProfilePageType = {
 }
 export type PostPropsType = {
     postsData: PostType[],
-    newPostText: string | undefined,
+    newPostText: string,
     dispatch: (action: ActionsTypes) => void
 }
 export type ProfilePagePropsType = {
@@ -56,39 +57,48 @@ export type StoreType = {
 export type PropsTypeForAPP = {
     state: RootStateType
     dispatch: (action: ActionsTypes) => void
+    store: StoreType
 }
-
-export type ActionsTypes = onPostActionChangeType | addPostActionCreatorType
-type addPostActionCreatorType = {
-    type: string
-    postText: string | undefined
-}
-type onPostActionChangeType = {
-    type: string
-    newText: string
-}
-
-
-
-export const addPostActionCreator = (textAdd: string | undefined) => ({
-        type: ADD_POST,
-        postText: textAdd } as const
-)
-
-export const onPostActionChange = (text: string | undefined) => ({
-        type: UPDATE_NEW_POST_TEXT,
-        newText: text ? text : "" } as const
-)
-
-export const sendMessageCreator = () => ({type: SEND_MESSAGE})
-export const updateNewMessageBodyCreator = (body: any) =>
-    ({ type: UPDATE_NEW_MESSAGE_BODY, body: body })
-
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
 const SEND_MESSAGE = "SEND-MESSAGE"
+
+export type ActionsTypes = onPostActionChangeType | addPostActionCreatorType | sendMessageCreatorType | updateNewMessageBodyCreatorType
+
+type addPostActionCreatorType = {
+    type:'ADD-POST'
+    postText: string
+}
+type onPostActionChangeType = {
+    type: "UPDATE-NEW-POST-TEXT"
+    newText: string
+}
+type sendMessageCreatorType = {
+    type: "SEND-MESSAGE"
+}
+type updateNewMessageBodyCreatorType = {
+    type: "UPDATE-NEW-MESSAGE-BODY"
+    body: string
+}
+
+export const addPostActionCreator = (postText: string) => ({
+        type: ADD_POST,
+        postText } as const
+)
+
+export const onPostActionChange = (text: string) => ({
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text ? text : "" } as const
+)
+
+export const sendMessageCreator = () => ({type: SEND_MESSAGE} as const)
+
+export const updateNewMessageBodyCreator = (body: string) => ({
+    type: UPDATE_NEW_MESSAGE_BODY,
+    body } as const
+)
 
 export let store: StoreType = {
     _state: {

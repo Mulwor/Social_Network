@@ -5,20 +5,28 @@ import {addPostActionCreator, onPostActionChange, PostPropsType} from "../../../
 
 
 const MyPosts = (props: PostPropsType) => {
+
     const postsElements = props.postsData.map (p =>
-        <Post message={p.message} likesCount={p.likesCount} key={p.id} />
+        <Post message={p.message}
+              likesCount={p.likesCount}
+              key={p.id}
+        />
     );
 
     const newPostElement= React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
-         let textAdd = newPostElement.current?.value
+        if (newPostElement &&  newPostElement.current) {
+         let textAdd = newPostElement.current.value
          props.dispatch(addPostActionCreator(textAdd))
+        }
     }
 
     const onPostChange = () => {
-        let text = newPostElement.current?.value;
-        props.dispatch(onPostActionChange(text))
+        if (newPostElement && newPostElement.current) {
+            let text = newPostElement.current.value;
+            props.dispatch(onPostActionChange(text))
+        }
     }
 
         return (
