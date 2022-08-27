@@ -1,4 +1,8 @@
 // Dialogs
+import profileRedгcer, {addPostActionCreatorType, onPostActionChangeType} from "./profile_reducer";
+import dialogReducer, {sendMessageCreatorType, updateNewMessageBodyCreatorType} from "./dialogs_reducer";
+import sidebarReducer from "./sidebar_reducer";
+
 export type DialogType = {
     id: number,
     name: string
@@ -60,45 +64,9 @@ export type PropsTypeForAPP = {
     store: StoreType
 }
 
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
-const SEND_MESSAGE = "SEND-MESSAGE"
 
 export type ActionsTypes = onPostActionChangeType | addPostActionCreatorType | sendMessageCreatorType | updateNewMessageBodyCreatorType
 
-type addPostActionCreatorType = {
-    type:'ADD-POST'
-    postText: string
-}
-type onPostActionChangeType = {
-    type: "UPDATE-NEW-POST-TEXT"
-    newText: string
-}
-type sendMessageCreatorType = {
-    type: "SEND-MESSAGE"
-}
-type updateNewMessageBodyCreatorType = {
-    type: "UPDATE-NEW-MESSAGE-BODY"
-    body: string
-}
-
-export const addPostActionCreator = (postText: string) => ({
-        type: ADD_POST,
-        postText } as const
-)
-
-export const onPostActionChange = (text: string) => ({
-        type: UPDATE_NEW_POST_TEXT,
-        newText: text ? text : "" } as const
-)
-
-export const sendMessageCreator = () => ({type: SEND_MESSAGE} as const)
-
-export const updateNewMessageBodyCreator = (body: string) => ({
-    type: UPDATE_NEW_MESSAGE_BODY,
-    body } as const
-)
 
 export let store: StoreType = {
     _state: {
@@ -143,29 +111,13 @@ export let store: StoreType = {
         return this._state
     },
     dispatch(action: ActionsTypes) {
-        if (action.type === ADD_POST) {
-            let newPost: PostType = {
-                id: new Date().getTime(),
-                message: action.postText,
-                likesCount: 0
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._onChange()
 
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
-            this._onChange()
+        this._state.profilePage = profileRedгcer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
-        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-            this._state.dialogsPage.newMessageBody = action.body;
-            this._onChange();
+        this._onChange();
 
-        } else if (action.type === SEND_MESSAGE) {
-            let body = this._state.dialogsPage.newMessageBody;
-            this._state.dialogsPage.newMessageBody = '';
-            this._state.dialogsPage.messages.push({id: 6, message: body});
-            this._onChange();
-        }
     }
 }
 
