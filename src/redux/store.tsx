@@ -3,6 +3,7 @@ import profileRedгcer, {addPostActionCreatorType, onPostActionChangeType} from 
 import dialogReducer, {sendMessageCreatorType, updateNewMessageBodyCreatorType} from "./dialogs_reducer";
 import sidebarReducer from "./sidebar_reducer";
 
+
 export type DialogType = {
     id: number,
     name: string
@@ -61,11 +62,12 @@ export type StoreType = {
 export type PropsTypeForAPP = {
     state: RootStateType
     dispatch: (action: ActionsTypes) => void
-    store: StoreType
+    store: any
 }
 
 
-export type ActionsTypes = onPostActionChangeType | addPostActionCreatorType | sendMessageCreatorType | updateNewMessageBodyCreatorType
+export type ActionsTypes = onPostActionChangeType | addPostActionCreatorType |
+                           sendMessageCreatorType | updateNewMessageBodyCreatorType
 
 
 export let store: StoreType = {
@@ -110,8 +112,8 @@ export let store: StoreType = {
     getState() {
         return this._state
     },
-    dispatch(action: ActionsTypes) {
 
+    dispatch(action: ActionsTypes) {
         this._state.profilePage = profileRedгcer(this._state.profilePage, action)
         this._state.dialogsPage = dialogReducer(this._state.dialogsPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
