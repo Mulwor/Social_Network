@@ -62,8 +62,7 @@ export type StoreType = {
 //APP
 export type PropsTypeForAPP = {
     state: RootStateType
-    dispatch: (action: ActionsTypes) => void
-    store: any
+    dispatch?: (action: ActionsTypes) => void
 }
 
 

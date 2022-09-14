@@ -4,18 +4,17 @@ import App from './App';
 //import store, {RootStateType} from './redux/store'
 import store from "./redux/redux-store"
 import {BrowserRouter} from "react-router-dom";
-import {ActionsTypes, RootStateType} from "./redux/store";
+// import {ActionsTypes, RootStateType} from "./redux/store";
+import StoreContext, {Provider} from "./StoreContext";
 
 
 
 let renderTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App
-                state={store.getState()}
-                dispatch={store.dispatch.bind(store)}
-                store={store}
-            />
+            <Provider store={store}>
+                <App />
+            </Provider>
         </BrowserRouter>, document.getElementById('root'));
 }
 

@@ -7,7 +7,8 @@ import {Route} from "react-router-dom";
 import {PropsTypeForAPP} from "./redux/store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-const App: React.FC<PropsTypeForAPP> = (props: PropsTypeForAPP) => {
+
+const App: React.FC<PropsTypeForAPP> = () => {
     // debugger
     return (
           <div className='app-wrapper'>
@@ -16,17 +17,14 @@ const App: React.FC<PropsTypeForAPP> = (props: PropsTypeForAPP) => {
 
               <div className='app-wrapper-content'>
                   <Route path='/dialogs'
-                         render={() =>
-                             <DialogsContainer
-                                 state = {props.state.dialogsPage}
-                                 store = {props.store}
-                             />
-                         }/>
+                         render={() =>  <DialogsContainer />
+                   }/>
 
                   <Route path='/profile'
-                         render={ ()  =>
-                             <Profile store = {props.store}/> }/>
+                         render={ ()  => <Profile />
+                  }/>
               </div>
+
           </div>)
 }
 

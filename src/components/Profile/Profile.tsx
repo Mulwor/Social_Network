@@ -3,15 +3,12 @@ import React from 'react';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
-type Profilete= {
-    store: any
-}
 
-const Profile = (props: Profilete) => {
+const Profile = () => {
     return (
         <div>
             <ProfileInfo />
-            <MyPostsContainer store = {props.store}/>
+            <MyPostsContainer />
         </div>
     )
 }
