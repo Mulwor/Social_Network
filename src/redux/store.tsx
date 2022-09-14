@@ -4,23 +4,24 @@ import dialogReducer, {sendMessageCreatorType, updateNewMessageBodyCreatorType} 
 import sidebarReducer from "./sidebar_reducer";
 
 
-export type DialogType = {
+type DialogType = {
     id: number,
     name: string
 }
-export type MessageType = {
+type MessageType = {
     id: number,
     message: string
 }
-export type DialogPageType = {
+type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessageBody: string
 }
-export type DialogsPropsType = {
+type DialogsPropsType = {
     state: DialogPageType
     store: StoreType
 }
+
 
 // Profile
 export type PostType = {

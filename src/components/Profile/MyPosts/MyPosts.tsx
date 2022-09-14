@@ -1,32 +1,32 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post'
-import {addPostActionCreator, onPostActionChange} from "../../../redux/profile_reducer";
-import {PostPropsType} from "../../../redux/store";
+// import {addPostActionCreator, onPostActionChange} from "../../../redux/profile_reducer";
+import {ActionsTypes, PostType} from "../../../redux/store";
 
+type PostPropsType = {
+    postsData: Array<PostType>
+    newPostText: string
+    updateNewPostText: (text: string) => void
+    addPost: () => void
+}
 
 const MyPosts = (props: PostPropsType) => {
-
-    const postsElements = props.postsData.map (p =>
-        <Post message={p.message}
-              likesCount={p.likesCount}
-              key={p.id}
-        />
+    const postsElements = props.postsData.map(p =>
+        <Post message={p.message} likesCount={p.likesCount} key={p.id}/>
     );
 
-    const newPostElement= React.createRef<HTMLTextAreaElement>();
+    const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const addPost = () => {
-        if (newPostElement &&  newPostElement.current) {
-         let textAdd = newPostElement.current.value
-         props.dispatch(addPostActionCreator(textAdd))
+    const onAddPost = (props: any) => {
+        if (newPostElement && newPostElement.current) {
+            props.addPost();
         }
     }
-
-    const onPostChange = () => {
+    const onPostChange = (props: any) => {
         if (newPostElement && newPostElement.current) {
             let text = newPostElement.current.value;
-            props.dispatch(onPostActionChange(text))
+            props.onPostActionChange(text);
         }
     }
 
@@ -42,7 +42,7 @@ const MyPosts = (props: PostPropsType) => {
                         />
                     </div>
                     <div>
-                        <button onClick={addPost}>Add post</button>
+                        <button onClick={onAddPost}>Add post</button>
                     </div>
                 </div>
                 <div className={s.posts}>
@@ -50,6 +50,6 @@ const MyPosts = (props: PostPropsType) => {
                 </div>
             </div>
         )
-}
+    }
 
 export default MyPosts;
