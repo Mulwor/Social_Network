@@ -26,7 +26,7 @@ const MyPosts = (props: PostPropsType) => {
     const onPostChange = (props: any) => {
         if (newPostElement && newPostElement.current) {
             let text = newPostElement.current.value;
-            props.onPostActionChange(text);
+            props.updateNewPostText(text);
         }
     }
 

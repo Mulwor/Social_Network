@@ -4,8 +4,7 @@ import App from './App';
 //import store, {RootStateType} from './redux/store'
 import store from "./redux/redux-store"
 import {BrowserRouter} from "react-router-dom";
-// import {ActionsTypes, RootStateType} from "./redux/store";
-import StoreContext, {Provider} from "./StoreContext";
+import {Provider} from "react-redux";
 
 
 

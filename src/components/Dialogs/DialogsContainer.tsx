@@ -1,31 +1,28 @@
 import React from 'react';
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs_reducer";
+import {sendMessageCreator} from "../../redux/dialogs_reducer";
 import Dialogs  from "./Dialogs";
-import StoreContext from "../../StoreContext";
+import {connect} from "react-redux";
 
 
-const DialogsContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            { store => {
-               // const stateOrigin = store.getState().dialogsPage;
-
-                const onSendMessageClick = () => {
-                    store.dispatch(sendMessageCreator());
-                }
-
-                const onNewMessageChange = (body: string) => {
-                    store.dispatch(updateNewMessageBodyCreator(body));
-                }
-
-               return <Dialogs updateNewMessageBody = {onNewMessageChange}
-                    sendMessage = {onSendMessageClick}
-                    dialogsPage = {store.getState().dialogsPage}
-                />
-            }
-        }
-        </StoreContext.Consumer>
-    )
+let mapStateToProps = (state: any) => {
+    return {
+        dialogsPage: state.dialogsPage
+    }
 }
+
+let mapDispathchToProps = (dispatch: any) => {
+    return {
+        updateNewMessageBody: () => {
+            dispatch(sendMessageCreator())
+        },
+        sendMessage: (body: any) => {
+            dispatch(sendMessageCreator(body));
+        }
+    }
+}
+
+
+// Вызвали функцию connect, она вернула нам двойную функцию, и мы вызываем потом ту функцию, который вернул нам предыдущий вызов. Первый вызов настраивает нашу контейнерную компоненту
+const DialogsContainer = connect(mapStateToProps,mapDispathchToProps)(Dialogs)
 
 export default DialogsContainer;

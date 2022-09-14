@@ -1,36 +1,32 @@
 import React from 'react';
 import {addPostActionCreator, onPostActionChange} from "../../../redux/profile_reducer";
 import MyPosts from "./MyPosts";
-import StoreContext from "../../../StoreContext";
+import {connect} from "react-redux";
 
 
 
-const MyPostsContainer = () => {
-    return (
-        // С помощью данного синтаксиса обращаемся в StoreContext
-        <StoreContext.Consumer>
-            {
-                (store) => {
-                let state = store.getState()
-
-                let addPost = () => {
-                    store.dispatch(addPostActionCreator());
-                }
-
-                let onPostChange = (text: string) => {
-                    let action = onPostActionChange(text);
-                    store.dispatch(action);
-                }
-
-                return <MyPosts
-                         updateNewPostText={onPostChange}
-                         addPost={addPost}
-                         postsData={state.profilePage.posts}
-                         newPostText={state.profilePage.newPostText}/>
-            }
-         }
-        </StoreContext.Consumer>
-    )
+let mapStateToProps = (state: any) => {
+    return {
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText
+    }
 }
+
+let mapDispathchToProps = (dispatch: any) => {
+    return {
+        updateNewPostText: (text: any) => {
+            let action = onPostActionChange(text);
+            dispatch(action);
+        },
+        addPost: () => {
+            dispatch(addPostActionCreator());
+        }
+    }
+}
+
+
+// Вызвали функцию connect, она вернула нам двойную функцию, и мы вызываем потом ту функцию, который вернул нам предыдущий вызов. Первый вызов настраивает нашу контейнерную компоненту
+const MyPostsContainer = connect(mapStateToProps, mapDispathchToProps)(MyPosts)
+
 
 export default MyPostsContainer;
