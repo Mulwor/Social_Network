@@ -16,12 +16,12 @@ const MyPosts = (props: MyPostType) => {
 
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const onAddPost = (props: any) => {
+    const onAddPost = () => {
         if (newPostElement && newPostElement.current) {
             props.addPost();
         }
     }
-    const onPostChange = (props: any) => {
+    const onPostChange = () => {
         if (newPostElement && newPostElement.current) {
             let text = newPostElement.current.value;
             props.updateNewPostText(text);
