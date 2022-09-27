@@ -3,8 +3,6 @@ import {addPostActionCreator, onPostActionChange} from "../../../redux/profile_r
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 
-
-
 let mapStateToProps = (state: any) => {
     return {
         posts: state.profilePage.posts,
@@ -23,7 +21,6 @@ let mapDispathchToProps = (dispatch: any) => {
         }
     }
 }
-
 
 // Вызвали функцию connect, она вернула нам двойную функцию, и мы вызываем потом ту функцию, который вернул нам предыдущий вызов. Первый вызов настраивает нашу контейнерную компоненту
 const MyPostsContainer = connect(mapStateToProps, mapDispathchToProps)(MyPosts)

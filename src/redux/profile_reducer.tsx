@@ -1,4 +1,4 @@
-import {ActionsTypes, PostPropsType, PostType, ProfilePagePropsType, ProfilePageType, RootStateType} from "./store";
+import {ActionsTypes, PostType, ProfilePageType} from "./store";
 
 export type addPostActionCreatorType = {
     type:'ADD-POST'
@@ -32,27 +32,31 @@ let initialState = {
     newPostText: "it-kamasutra"
 }
 
-const profileRedгcer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
+const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
             let newPost: PostType = {
                 id: new Date().getTime(),
                 message: state.newPostText,
                 likesCount: 0
             };
-            state.posts.push(newPost);
-            state.newPostText = '';
-            return state
+
+            // Добавляем повехрностную копию
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText: ''
+            }
+        }
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            return state
+            return {
+                ...state,
+                newPostText: action.newText
+            }
         default:
             return state;
     }
-
-    return state;
 }
 
 
-
-export default profileRedгcer
+export default profileReducer

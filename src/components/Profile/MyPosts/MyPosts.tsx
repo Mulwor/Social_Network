@@ -2,7 +2,7 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post'
 // import {addPostActionCreator, onPostActionChange} from "../../../redux/profile_reducer";
-import {ActionsTypes, PostType} from "../../../redux/store";
+import {PostType} from "../../../redux/store";
 
 type PostPropsType = {
     postsData: Array<PostType>
@@ -35,10 +35,9 @@ const MyPosts = (props: PostPropsType) => {
                 <h3>My posts</h3>
                 <div>
                     <div>
-                        <textarea
-                            onChange={onPostChange}
-                            ref={newPostElement}
-                            value={props.newPostText}
+                        <textarea onChange={onPostChange}
+                                  ref={newPostElement}
+                                  value={props.newPostText}
                         />
                     </div>
                     <div>
