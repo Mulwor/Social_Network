@@ -1,27 +1,11 @@
 // Dialogs
-import profileRedгcer, {addPostActionCreatorType, onPostActionChangeType} from "./profile_reducer";
+import profileRedгcer, {addPostActionCreatorType, onPostActionChangeType, ProfilePageType} from "./profile_reducer";
 import dialogReducer, {sendMessageCreatorType, updateNewMessageBodyCreatorType} from "./dialogs_reducer";
 import sidebarReducer from "./sidebar_reducer";
 import {DialogPageType} from "../components/Dialogs/Dialogs";
-import {PostType} from "../components/Profile/MyPosts/MyPostsContainer";
 
 
 
-// Profile
-export type ProfilePageType = {
-    posts: Array<PostType>
-    newPostText: string
-}
-export type PostPropsType = {
-    postsData: PostType[],
-    newPostText: string,
-    dispatch: (action: ActionsTypes) => void
-}
-export type ProfilePagePropsType = {
-    profilePage: ProfilePageType,
-    newPostText: string,
-    dispatch: (action: ActionsTypes) => void
-}
 export type SidebarType = {}
 export type RootStateType = {
     profilePage: ProfilePageType

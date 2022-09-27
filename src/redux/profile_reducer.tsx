@@ -1,5 +1,10 @@
-import {ActionsTypes, PostType, ProfilePageType} from "./store";
+import {ActionsTypes} from "./store";
+import {PostType} from "../components/Profile/MyPosts/MyPostsContainer";
 
+export type ProfilePageType = {
+    posts: Array<PostType>
+    newPostText: string
+}
 export type addPostActionCreatorType = {
     type:'ADD-POST'
     postText: string
@@ -13,7 +18,6 @@ const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
 export const addPostActionCreator = () => ({ type: ADD_POST } as const )
-
 export const onPostActionChange = (text: string) => ({
         type: UPDATE_NEW_POST_TEXT,
         newText: text ? text : "" } as const
