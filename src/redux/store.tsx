@@ -2,21 +2,9 @@
 import profileRedгcer, {addPostActionCreatorType, onPostActionChangeType} from "./profile_reducer";
 import dialogReducer, {sendMessageCreatorType, updateNewMessageBodyCreatorType} from "./dialogs_reducer";
 import sidebarReducer from "./sidebar_reducer";
+import {DialogPageType} from "../components/Dialogs/Dialogs";
 
 
-type DialogType = {
-    id: number,
-    name: string
-}
-type MessageType = {
-    id: number,
-    message: string
-}
-type DialogPageType = {
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
-    newMessageBody: string
-}
 type DialogsPropsType = {
     state: DialogPageType
     store: StoreType

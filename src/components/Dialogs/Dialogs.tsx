@@ -16,6 +16,7 @@ export type DialogPageType = {
     messages: Array<MessageType>
     newMessageBody: string
 }
+
 type DialogsPropsType = {
     dialogsPage: DialogPageType
     updateNewMessageBody: (body: string) => void
