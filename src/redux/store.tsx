@@ -3,20 +3,11 @@ import profileRedгcer, {addPostActionCreatorType, onPostActionChangeType} from 
 import dialogReducer, {sendMessageCreatorType, updateNewMessageBodyCreatorType} from "./dialogs_reducer";
 import sidebarReducer from "./sidebar_reducer";
 import {DialogPageType} from "../components/Dialogs/Dialogs";
+import {PostType} from "../components/Profile/MyPosts/MyPostsContainer";
 
-
-type DialogsPropsType = {
-    state: DialogPageType
-    store: StoreType
-}
 
 
 // Profile
-export type PostType = {
-    id?: number,
-    message: string,
-    likesCount: number
-}
 export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string

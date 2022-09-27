@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import Users from "./Users";
-import {followAC, InitialStateType, setUsersAC, unfollowAC, UserType} from "../../redux/users_reducer";
+import {followAC, setUsersAC, unfollowAC, UserType} from "../../redux/users_reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 

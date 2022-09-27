@@ -3,8 +3,13 @@ import {addPostActionCreator, onPostActionChange} from "../../../redux/profile_r
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
-import {PostType, RootStateType} from "../../../redux/store";
+import {RootStateType} from "../../../redux/store";
 
+export type PostType = {
+    id?: number,
+    message: string,
+    likesCount: number
+}
 
 type mapDispatchToPropsType = {
     updateNewPostText: (text: string) => void

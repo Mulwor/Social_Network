@@ -1,20 +1,17 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post'
-// import {addPostActionCreator, onPostActionChange} from "../../../redux/profile_reducer";
-import {PostType} from "../../../redux/store";
 import {MyPostType} from "./MyPostsContainer";
 
-type PostPropsType = {
-    postsData: Array<PostType>
-    newPostText: string
-    updateNewPostText: (text: string) => void
-    addPost: () => void
-}
+
 
 const MyPosts = (props: MyPostType) => {
     const postsElements = props.posts.map(p =>
-        <Post message={p.message} likesCount={p.likesCount} key={p.id}/>
+        <Post
+            message={p.message}
+            likesCount={p.likesCount}
+            key={p.id}
+        />
     );
 
     const newPostElement = React.createRef<HTMLTextAreaElement>();
