@@ -1,7 +1,17 @@
 import React from "react";
 import styles from './users.module.css'
+import {UsersPropsType} from "./UsersContainer";
+import {UserType} from "../../redux/users_reducer";
 
-let Users = (props: any) => {
+type UserPropsType = {
+    users: UserType[]
+    follow: (userID: number) => void
+    unfollow: (userID: number) => void
+    setUsers: (users: UserType[]) => void
+}
+
+
+let Users = (props: UserPropsType) => {
     if (props.users.length === 0) {
         props.setUsers([
                 {

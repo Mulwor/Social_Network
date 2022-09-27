@@ -3,6 +3,7 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post'
 // import {addPostActionCreator, onPostActionChange} from "../../../redux/profile_reducer";
 import {PostType} from "../../../redux/store";
+import {MyPostType} from "./MyPostsContainer";
 
 type PostPropsType = {
     postsData: Array<PostType>
@@ -11,8 +12,8 @@ type PostPropsType = {
     addPost: () => void
 }
 
-const MyPosts = (props: PostPropsType) => {
-    const postsElements = props.postsData.map(p =>
+const MyPosts = (props: MyPostType) => {
+    const postsElements = props.posts.map(p =>
         <Post message={p.message} likesCount={p.likesCount} key={p.id}/>
     );
 

@@ -4,6 +4,16 @@ import {DialogPageType} from "../components/Dialogs/Dialogs";
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
 const SEND_MESSAGE = "SEND-MESSAGE"
 
+type DialogType = {
+    id: number,
+    name: string,
+}
+
+type MessagesType = {
+    id: number
+    message: string
+}
+
 let initialState = {
     dialogs: [
         {id: 1, name: 'Dimych'},
@@ -12,18 +22,20 @@ let initialState = {
         {id: 4, name: 'Sasha'},
         {id: 5, name: 'Viktor'},
         {id: 6, name: 'Valera'}
-    ],
+    ] as Array<DialogType>,
     messages: [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'How is your it-kamasutra?'},
         {id: 3, message: 'Yo'},
         {id: 4, message: 'Yo'},
         {id: 5, message: 'Yo'}
-    ],
+    ] as Array<MessagesType>,
     newMessageBody: ""
 }
 
-const dialogReducer = (state: DialogPageType = initialState, action: ActionsTypes) => {
+export type InitialStateType = typeof initialState
+
+const dialogReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
    switch (action.type) {
        case UPDATE_NEW_MESSAGE_BODY:
            return {

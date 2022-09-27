@@ -12,10 +12,7 @@ export type onPostActionChangeType = {
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
-export const addPostActionCreator = (postText: string) => ({
-        type: ADD_POST,
-        postText } as const
-)
+export const addPostActionCreator = () => ({ type: ADD_POST } as const )
 
 export const onPostActionChange = (text: string) => ({
         type: UPDATE_NEW_POST_TEXT,
