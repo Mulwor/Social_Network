@@ -14,7 +14,6 @@ type PhotoTypes = {
     large: null
 }
 
-
 export type UserType = {
     id: number
     photos: PhotoTypes
@@ -39,7 +38,6 @@ export type InitialStateType = {
 }
 
 const usersReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
-
     switch (action.type) {
         case FOLLOW:
             return {
