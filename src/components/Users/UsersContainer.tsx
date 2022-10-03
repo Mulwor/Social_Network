@@ -1,15 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import {
-    followAC,
-    setCurrentPageAC,
-    setUsersAC,
-    setUsersTotalCountAC, toggleIsFetching,
-    unfollowAC,
-    UserType
-} from "../../redux/users_reducer";
+import {follow, setCurrentPage, setUsers, setUsersTotalCount, toggleIsFetching, unfollow, UserType} from "../../redux/users_reducer";
 import {AppStateType} from "../../redux/redux-store";
-import {Dispatch} from "redux";
 import axios from "axios";
 import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
@@ -97,28 +89,9 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         isFetching: state.usersPage.isFetching
     }
 }
-let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
-    return {
-        follow: (userId: number) => {
-            dispatch(followAC(userId))
-        },
-        unfollow: (userId: number) => {
-            dispatch(unfollowAC(userId))
-        },
-        setUsers: (users: Array<UserType>) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (pageNumber: number) => {
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalUsersCount: (totalCount: number) => {
-            dispatch(setUsersTotalCountAC(totalCount))
-        },
-        toggleIsFetching: (isFetching: boolean) => {
-            dispatch(toggleIsFetching(isFetching))
-        }
-    }
-}
 
-
-export default connect(mapStateToProps, mapDispatchToProps) (UsersContainer)
+// Если вы передаете в connect вторым аргументом не mapDispatchToProps, а объект с AC, то connect
+// оборачивает ваши AC в функцию-обертку () => store.dispatch(AC) и передаёт в props компонента
+export default connect(mapStateToProps, {
+    follow, unfollow, setUsers, setCurrentPage, setUsersTotalCount, toggleIsFetching
+})(UsersContainer)
