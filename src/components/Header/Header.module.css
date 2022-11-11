@@ -1,9 +1,10 @@
 .header {
     grid-area: h;
-    background-color: yellow;
+    background-color: rgb(200, 200, 200);
 }
 
 .header img {
-    width: 20px;
+    cursor: pointer;
+    width: 60px;
 }
 

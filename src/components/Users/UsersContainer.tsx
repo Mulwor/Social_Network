@@ -6,9 +6,6 @@ import axios from "axios";
 import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
 
-
-
-
 type UserPropsType = {
     users: UserType[]
     follow: (userID: number) => void

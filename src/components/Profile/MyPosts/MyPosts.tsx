@@ -3,8 +3,6 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post'
 import {MyPostType} from "./MyPostsContainer";
 
-
-
 const MyPosts = (props: MyPostType) => {
     const postsElements = props.posts.map(p =>
         <Post

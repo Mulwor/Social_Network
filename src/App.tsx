@@ -25,9 +25,9 @@ const App: React.FC<PropsTypeForAPP> = () => {
                          render={ ()  => <Profile />
                   }/>
 
-                  <Route path='/users'
+                {/*  <Route path='/users'
                          render={ () => <UsersContainer />
-                  }/>
+                  }/>*/}
               </div>
 
           </div>)
